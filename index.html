@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <link rel="icon" type="image/png" href="./image.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IIT-BBS MenuBoard</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+
+      <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="header">
+            <div class="title" style="width: 33%; margin: 0 auto;">IIT-BBS MenuBoard</div>
+                <button class="theme-btn" onclick="toggleTheme()">🔆 / 🌙</button>
+        </div>
+
+         <!-- Selection -->
+    <div class="card" id="selectionCard">
+    <label>Residential Hall</label>
+    <select id="hallSelect">
+        <option>Mother's Touch</option>
+        <option >RHR</option>
+        <option >BHR</option>
+        <option>MHR</option>
+        <option>GHR</option>
+    </select>
+
+    <Label>Day</Label>
+<select id="daySelect">
+             <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option>Friday</option>
+            <option>Saturday</option>
+            <option>Sunday</option>
+</select>
+        <button class="primary-btn" onclick="showMenu()">View Menu</button>
+    </div>
+
+    <!-- Menu -->
+    <div class="card hidden" id="menuCard">
+        <div class="back" onclick="goBack()">⎌ to Selection</div>
+        <div id="menuHeader" style="font-weight:600; margin-bottom: 10px;"></div>
+        <div id="menuContent"></div>
+</div>
+
+
+    <!-- Instagram -->
+    <div class="footer">
+        <a class="insta-btn" href="https://www.instagram.com/dattaraj_dhatbale/" target="_blank">
+            <img id="instaIcon" class="insta-icon" src="">
+            <span class="insta-text">dee dee</span>
+        </a>
+</div>
+
+</div>
+
+
+<!-- Script -->
+<script src="script.js"></script>
+
+</body>
+</html>

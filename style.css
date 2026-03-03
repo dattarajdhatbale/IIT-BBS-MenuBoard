@@ -1,0 +1,233 @@
+:root{
+    --bg-gradient: linear-gradient(135deg,#bfa2c9,#e5e5e5);
+    --card:#ffffff;
+    --text:#222;
+    --border:#d0d0d0;
+    --accent:#b48bbd;
+}
+
+[data-theme="dark"]{
+    --bg-gradient:#1a1a1a;
+    --card:#2a2a2a;
+    --text:#f5f5f5;
+    --border:#444;
+    --accent:#555;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto;
+}
+
+.header {
+    white-space: nowrap;
+}
+
+body{
+    min-height:100vh;
+    background:var(--bg-gradient);
+    background-size:200% 200%;
+    animation:bgMove 12s ease infinite;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    color:var(--text);
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.container{
+    width:100%;
+    max-width:420px;
+    padding-bottom:80px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.title{
+    font-size:22px;
+    font-weight:600;
+}
+
+.theme-btn{
+    border:1px solid var(--border);
+    background:var(--card);
+    padding:6px 10px;
+    border-radius:6px;
+    cursor:pointer;
+    color:var(--text);
+    box-shadow:0 6px 18px rgba(0,0,0,0.15);
+    z-index:100;
+}
+
+/* Cards */
+.card{
+    background:var(--card);
+    border-radius:14px;
+    padding:18px;
+    border:1px solid var(--border);
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    transition:all 0.4s ease;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 35px rgba(0,0,0,0.12);
+}
+
+/* Select */
+select{
+    width:100%;
+    padding:10px;
+    margin-top:8px;
+    margin-bottom:12px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    cursor:pointer;
+    transition:0.2s;
+}
+
+select:hover{
+    border-color:var(--accent);
+    transform:scale(1.02);
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(180,139,189,0.25);
+}
+
+select option{
+    background:var(--card);
+    color: var(--text);
+}
+
+/* Button */
+.primary-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:var(--accent);
+    color:var(--text);
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight: 600;
+    transition:0.3s;
+}
+
+.primary-btn:hover{
+    transform:translateY(-2px);
+    opacity:0.9;
+}
+
+/* Menu */
+.meal{
+    padding:12px;
+    border-bottom:1px solid var(--border);
+    animation:fadeIn 0.4s ease;
+}
+
+.meal:last-child{
+    border-bottom:none;
+}
+
+.meal-title{
+    font-size:13px;
+    opacity:0.7;
+}
+
+.meal-value{
+    font-size:16px;
+    margin-top:3px;
+}
+
+.back{
+    margin-bottom:10px;
+    cursor:pointer;
+    font-size:14px;
+    opacity:0.8;
+    transition:0.2s;
+}
+
+.back:hover{
+    transform:scale(1.02);
+    opacity:1;
+}
+
+.back:active{
+    transform:scale(0.97);
+}
+
+/* Animations */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.fade-out{
+    opacity:0;
+    transform:scale(0.95);
+    pointer-events:none;
+}
+
+.hidden{
+    display:none;
+    opacity:0;
+}
+
+/* Instagram Footer */
+.footer{
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+.insta-btn{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:var(--text);
+    border:1px solid var(--border);
+    padding:8px 18px;
+    border-radius:999px;
+    background:var(--card);
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
+    transition:all 0.3s ease;
+}
+
+.insta-btn:hover{
+    transform:scale(1.08) translateY(-2px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.insta-text{
+    font-family: 'Righteous', cursive;
+    font-size:20px;
+}
+
+.insta-icon{
+    width:22px;
+    height:22px;
+    object-fit:contain;
+}
