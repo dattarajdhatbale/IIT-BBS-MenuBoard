@@ -155,6 +155,7 @@ select option{
 .meal-value{
     font-size:16px;
     margin-top:3px;
+    white-space: pre-line;
 }
 
 .back{
@@ -231,3 +232,4 @@ select option{
     height:22px;
     object-fit:contain;
 }
+
