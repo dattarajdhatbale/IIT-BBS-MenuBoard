@@ -116,7 +116,13 @@ body{
     content: "↗";
     margin-left: 8px;
     opacity: 0.6;
+    font-size: inherit;   
 }
+.clickable-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
 .eateries-container {
     display: flex;
     flex-direction: column;
