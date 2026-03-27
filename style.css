@@ -111,6 +111,12 @@ body{
 .clickable-card:hover {
     transform: scale(1.03);
 }
+
+.clickable-card::after {
+    content: "↗";
+    margin-left: 8px;
+    opacity: 0.6;
+}
 .eateries-container {
     display: flex;
     flex-direction: column;
