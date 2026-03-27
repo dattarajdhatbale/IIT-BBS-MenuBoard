@@ -103,11 +103,21 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 45px;        /* fixed clean height */
+    padding: 10px 14px;   /* reduce vertical height */
+    min-height: auto;     /* remove forced height if any */
 }
 
 .clickable-card:hover {
     transform: scale(1.03);
 }
+.eateries-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;        /* controls spacing between cards */
+    margin-top: 16px; /* space from main card */
+}
+
 /*changes completed here*/
 /* Select */
 select{
