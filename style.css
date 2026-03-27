@@ -88,6 +88,12 @@ body{
 }
 
 /*Changes done here*/
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .clickable-card {
     text-decoration: none;   /* removes underline */
     color: inherit;          /* keeps text same color */
