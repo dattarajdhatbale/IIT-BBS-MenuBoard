@@ -89,9 +89,10 @@ body{
 
 /*Changes done here*/
 .card {
-    display: flex;
+    display : block;
+    /*display: flex; 
     align-items: center;
-    justify-content: center;
+    justify-content: center;*/
 }
 
 .clickable-card {
@@ -99,6 +100,9 @@ body{
     color: inherit;          /* keeps text same color */
     cursor: pointer;
     transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .clickable-card:hover {
