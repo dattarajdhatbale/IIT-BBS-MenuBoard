@@ -87,6 +87,18 @@ body{
     box-shadow:0 15px 35px rgba(0,0,0,0.12);
 }
 
+/*Changes done here*/
+.clickable-card {
+    text-decoration: none;   /* removes underline */
+    color: inherit;          /* keeps text same color */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.clickable-card:hover {
+    transform: scale(1.03);
+}
+/*changes completed here*/
 /* Select */
 select{
     width:100%;
