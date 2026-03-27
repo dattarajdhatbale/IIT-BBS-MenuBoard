@@ -103,7 +103,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 45px;        /* fixed clean height */
+    height: 40px;        /* fixed clean height */
     padding: 10px 14px;   /* reduce vertical height */
     min-height: auto;     /* remove forced height if any */
 }
