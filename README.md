@@ -4,7 +4,7 @@ A responsive hostel mess menu web app with multi-hall support, dark mode, and li
 Live Demo
 https://dattarajdhatbale.github.io/IIT-BBS-MenuBoard/
 https://iit-bbs-menuboard.netlify.app/
-
+https://iit-bbs-menuboard.vercel.app/
 How It Works
 Menu data is maintained in a public Google Sheet.
 The app fetches data using:
