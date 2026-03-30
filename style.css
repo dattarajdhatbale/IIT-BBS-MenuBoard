@@ -35,7 +35,7 @@
 }
 
 .title span {
-  color: var(--gold); /* or any highlight color */
+ /* color: var(--gold); */ /*if want to highlight it gold just put this in */
     font-style: italic;
     font-family: 'Playfair Display', serif;
 
