@@ -24,7 +24,15 @@
 .header {
     white-space: nowrap;
 }
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 48px);
+  text-align: center;
+}
 
+.title span {
+  color: var(--gold); /* or any highlight color */
+}
 body{
     min-height:100vh;
     background:var(--bg-gradient);
