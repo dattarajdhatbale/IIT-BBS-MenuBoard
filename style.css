@@ -32,6 +32,8 @@
 
 .title span {
   color: var(--gold); /* or any highlight color */
+    font-style: italic;
+
 }
 body{
     min-height:100vh;
