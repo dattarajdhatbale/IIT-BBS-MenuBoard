@@ -28,11 +28,14 @@
   font-family: 'Playfair Display', serif;
   font-size: clamp(28px, 5vw, 48px);
   text-align: center;
+        font-style: bold;
+
 }
 
 .title span {
   color: var(--gold); /* or any highlight color */
     font-style: italic;
+    font-family: 'Playfair Display', serif;
 
 }
 body{
