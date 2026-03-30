@@ -4,6 +4,8 @@
     --text:#222;
     --border:#d0d0d0;
     --accent:#b48bbd;
+      --gold: #FFD700;
+
 }
 
 [data-theme="dark"]{
