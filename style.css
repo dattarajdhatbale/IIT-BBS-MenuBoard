@@ -147,10 +147,10 @@ body{
 }
 
 .eateries-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;        /* controls spacing between cards */
-    margin-top: 16px; /* space from main card */
+    display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;        
+    margin-top: 20px; 
 }
 
 /*changes completed here*/
