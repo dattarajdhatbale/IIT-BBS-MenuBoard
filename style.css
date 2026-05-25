@@ -8,11 +8,11 @@
 }
 
 :root {
-    --g1: #d4b8df;   /* soft lavender-purple */
-    --g2: #bfa2c9;   /* your original accent purple */
-    --g3: #e8d5f0;   /* light lilac */
-    --g4: #f0e6f6;   /* near-white purple */
-    --g5: #c9a8d4;   /* mid purple */
+   --g1: #c9a8d4;   /* mid purple */
+--g2: #bfa2c9;   /*  original chosen accent purple(if gradients don't work remember to revert back to this)*/
+--g3: #d4b8df;   /* soft lavender */
+--g4: #b894c8;   /* deeper mauve */
+--g5: #c4a0d0;   /* muted violet */
 }
 
 
