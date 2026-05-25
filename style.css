@@ -5,8 +5,16 @@
     --border:#d0d0d0;
     --accent:#b48bbd;
       --gold: #FFD700;
-
 }
+
+:root {
+    --g1: #d4b8df;   /* soft lavender-purple */
+    --g2: #bfa2c9;   /* your original accent purple */
+    --g3: #e8d5f0;   /* light lilac */
+    --g4: #f0e6f6;   /* near-white purple */
+    --g5: #c9a8d4;   /* mid purple */
+}
+
 
 [data-theme="dark"]{
     --bg-gradient:#1a1a1a;
@@ -52,11 +60,37 @@ body{
     padding:20px;
     color:var(--text);
 }
+body {
+    background: linear-gradient(
+        -45deg,
+        var(--g1),
+        var(--g2),
+        var(--g3),
+        var(--g4),
+        var(--g5)
+    );
+    background-size: 400% 400%;
+    animation: bgMove 10s ease infinite;
+}
 
 @keyframes bgMove{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+    0%   { background-position: 0%   50%; }
+    25%  { background-position: 100% 50%; }
+    50%  { background-position: 100% 0%;  }
+    75%  { background-position: 0%   100%;}
+    100% { background-position: 0%   50%; }
+}
+[data-theme="dark"] body {
+    background: linear-gradient(
+        -45deg,
+        #1a1a2e,
+        #2a1a35,
+        #1e1e2e,
+        #251530,
+        #1a1a2e
+    );
+    background-size: 400% 400%;
+    animation: bgMove 10s ease infinite;
 }
 
 .container{
