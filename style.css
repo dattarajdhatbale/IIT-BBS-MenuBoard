@@ -83,11 +83,11 @@ body {
 [data-theme="dark"] body {
     background: linear-gradient(
         -45deg,
-        #1a1a2e,
-        #2a1a35,
-        #1e1e2e,
-        #251530,
-        #1a1a2e
+        #252535,
+        #2e2b42,
+        #232330,
+        #2b2840,
+        #252535
     );
     background-size: 400% 400%;
     animation: bgMove 10s ease infinite;
