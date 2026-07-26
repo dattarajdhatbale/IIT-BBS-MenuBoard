@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IIT-BBS MenuBoard</title>
 
+    <!-- PWA -->
+    <link rel="manifest" href="./manifest.webmanifest">
+    <meta name="theme-color" content="#b48bbd">
+    <link rel="apple-touch-icon" href="./images/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="MenuBoard">
+
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
@@ -20,6 +28,10 @@
             <div class="title" style="width: 33%; margin: 0 auto;">Menu<span>Board</span></div>
                 <button class="theme-btn" onclick="toggleTheme()">🔆 / 🌙</button>
         </div>
+
+        <!-- PWA Install -->
+        <button class="install-btn hidden" id="installBtn" onclick="installApp()">⬇ Install App</button>
+        <div class="install-note hidden" id="installNote"></div>
 
          <!-- Selection -->
     <div class="card" id="selectionCard">

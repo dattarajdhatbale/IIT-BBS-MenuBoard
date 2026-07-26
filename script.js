@@ -11,6 +11,99 @@ async function fetchSheetData() {
     }
 }
 
+/* ---------- PWA: Service Worker Registration ---------- */
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js")
+            .then(reg => console.log("Service worker registered:", reg.scope))
+            .catch(err => console.log("Service worker registration failed:", err));
+    });
+}
+
+/* ---------- PWA: Install Prompt Handling ---------- */
+let deferredInstallPrompt = null;
+
+function isRunningStandalone() {
+    // Covers Chrome/Edge/Android ("display-mode: standalone") and iOS Safari ("navigator.standalone").
+    return window.matchMedia("(display-mode: standalone)").matches
+        || window.navigator.standalone === true;
+}
+
+function isIos() {
+    return /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+}
+
+function showInstallButton() {
+    const btn = document.getElementById("installBtn");
+    const note = document.getElementById("installNote");
+    btn.classList.remove("hidden");
+    note.classList.add("hidden");
+}
+
+function showInstallNote(message) {
+    const btn = document.getElementById("installBtn");
+    const note = document.getElementById("installNote");
+    btn.classList.add("hidden");
+    note.textContent = message;
+    note.classList.remove("hidden");
+}
+
+function hideInstallUi() {
+    document.getElementById("installBtn").classList.add("hidden");
+    document.getElementById("installNote").classList.add("hidden");
+}
+
+(function initInstallUi() {
+    // Already installed and running as an app: nothing to show.
+    if (isRunningStandalone()) {
+        hideInstallUi();
+        return;
+    }
+
+    // iOS Safari never fires beforeinstallprompt, so show manual instructions instead.
+    if (isIos()) {
+        showInstallNote("To install: tap Share → Add to Home Screen");
+        return;
+    }
+
+    // Everywhere else: wait for Chrome/Edge to tell us installation is available.
+    // Until that event fires (or if it never does), keep the install UI hidden
+    // rather than showing a button that won't work.
+})();
+
+window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault(); // stop the default mini-infobar
+    deferredInstallPrompt = event;
+    if (!isRunningStandalone()) {
+        showInstallButton();
+    }
+});
+
+async function installApp() {
+    if (!deferredInstallPrompt) {
+        return;
+    }
+    const btn = document.getElementById("installBtn");
+    btn.disabled = true;
+
+    deferredInstallPrompt.prompt();
+    const { outcome } = await deferredInstallPrompt.userChoice;
+    console.log("Install prompt outcome:", outcome);
+
+    // Whether accepted or dismissed, this prompt instance is spent.
+    // Chrome won't refire beforeinstallprompt again for a while after a dismissal,
+    // which naturally prevents repeatedly annoying the user.
+    deferredInstallPrompt = null;
+    hideInstallUi();
+    btn.disabled = false;
+}
+
+window.addEventListener("appinstalled", () => {
+    console.log("App installed");
+    deferredInstallPrompt = null;
+    hideInstallUi();
+});
+
 /* ---------- Theme (Default = Light) ---------- */
 (function () {
     const saved = localStorage.getItem("theme");
@@ -84,6 +177,11 @@ function showMenu(){
                 <div class="meal-title">Lunch</div>
                 <div class="meal-value">${data.Lunch}</div>
             </div>
+            <div class="meal">
+                <div class="meal-title">Snacks</div>
+                <div class="meal-value">${data.Snacks}</div>
+            </div>
+
             <div class="meal">
                 <div class="meal-title">Dinner</div>
                 <div class="meal-value">${data.Dinner}</div>
