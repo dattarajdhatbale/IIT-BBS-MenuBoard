@@ -1,6 +1,6 @@
 // Bump this version string whenever you change cached files,
 // so old caches get cleared and users get the update.
-const CACHE_NAME = "menuboard-cache-v1";
+const CACHE_NAME = "menuboard-cache-v2";
 
 // The "app shell" — static files needed for the UI to load offline.
 // NOTE: We deliberately do NOT cache the Google Sheet data URL,
