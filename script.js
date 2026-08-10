@@ -202,4 +202,155 @@ function goBack() {
         selection.classList.remove("fade-out");
     },50);
 }
+/* ═══════════════════════════════════════════
+   MESS CARD — IndexedDB storage + fullscreen
+   ═══════════════════════════════════════════ */
+const MessCardDB = (() => {
+    const DB_NAME = 'menuboard-db';
+    const STORE   = 'mess-card';
+
+    function open() {
+        return new Promise((resolve, reject) => {
+            const req = indexedDB.open(DB_NAME, 1);
+            req.onupgradeneeded = e => e.target.result.createObjectStore(STORE);
+            req.onsuccess = e => resolve(e.target.result);
+            req.onerror   = e => reject(e.target.error);
+        });
+    }
+
+    return {
+        async save(blob) {
+            const db = await open();
+            return new Promise((res, rej) => {
+                const tx = db.transaction(STORE, 'readwrite');
+                tx.objectStore(STORE).put(blob, 'card');
+                tx.oncomplete = res;
+                tx.onerror    = e => rej(e.target.error);
+            });
+        },
+        async get() {
+            const db = await open();
+            return new Promise((res, rej) => {
+                const req = db.transaction(STORE, 'readonly')
+                              .objectStore(STORE).get('card');
+                req.onsuccess = e => res(e.target.result ?? null);
+                req.onerror   = e => rej(e.target.error);
+            });
+        },
+        async remove() {
+            const db = await open();
+            return new Promise((res, rej) => {
+                const tx = db.transaction(STORE, 'readwrite');
+                tx.objectStore(STORE).delete('card');
+                tx.oncomplete = res;
+                tx.onerror    = e => rej(e.target.error);
+            });
+        }
+    };
+})();
+
+/* ---- State ---- */
+let messCardObjectURL = null;
+
+function showMessCardEmpty() {
+    document.getElementById('messCardEmpty').classList.remove('hidden');
+    document.getElementById('messCardStored').classList.add('hidden');
+}
+
+function showMessCardStored(blob) {
+    if (messCardObjectURL) URL.revokeObjectURL(messCardObjectURL);
+    messCardObjectURL = URL.createObjectURL(blob);
+    document.getElementById('messCardThumb').src = messCardObjectURL;
+    document.getElementById('messCardEmpty').classList.add('hidden');
+    document.getElementById('messCardStored').classList.remove('hidden');
+}
+
+async function initMessCard() {
+    try {
+        const blob = await MessCardDB.get();
+        blob ? showMessCardStored(blob) : showMessCardEmpty();
+    } catch (e) {
+        console.error('MessCard init error:', e);
+        showMessCardEmpty();
+    }
+}
+
+async function handleMessCardFile(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+    try {
+        await MessCardDB.save(file);
+        showMessCardStored(file);
+    } catch (e) {
+        console.error('MessCard save error:', e);
+    }
+}
+
+/* ---- Fullscreen ---- */
+function openMessCardFullscreen() {
+    const overlay = document.getElementById('messCardOverlay');
+    document.getElementById('messCardFull').src = messCardObjectURL;
+    overlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+
+    // Use native fullscreen API where available for best visibility
+    try {
+        if (overlay.requestFullscreen)              overlay.requestFullscreen();
+        else if (overlay.webkitRequestFullscreen)   overlay.webkitRequestFullscreen();
+    } catch (_) { /* unsupported — overlay still shows */ }
+}
+
+function closeMessCardFullscreen() {
+    document.getElementById('messCardOverlay').classList.add('hidden');
+    document.body.style.overflow = '';
+
+    try {
+        if (document.fullscreenElement && document.exitFullscreen)
+            document.exitFullscreen();
+        else if (document.webkitFullscreenElement && document.webkitExitFullscreen)
+            document.webkitExitFullscreen();
+    } catch (_) {}
+}
+
+/* ---- Attach event listeners (no onclick in HTML) ---- */
+// File upload — new card
+document.getElementById('messCardInput').addEventListener('change', e => {
+    if (e.target.files[0]) handleMessCardFile(e.target.files[0]);
+    e.target.value = ''; // reset so same file can be re-selected
+});
+
+// File upload — replace card
+document.getElementById('messCardReplace').addEventListener('change', e => {
+    if (e.target.files[0]) handleMessCardFile(e.target.files[0]);
+    e.target.value = '';
+});
+
+// Show fullscreen
+document.getElementById('showCardBtn').addEventListener('click', openMessCardFullscreen);
+
+// Close — button
+document.getElementById('overlayCloseBtn').addEventListener('click', e => {
+    e.stopPropagation();
+    closeMessCardFullscreen();
+});
+
+// Close — tap anywhere on overlay (image has pointer-events:none so taps pass through)
+document.getElementById('messCardOverlay').addEventListener('click', closeMessCardFullscreen);
+
+// Close — Escape key
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMessCardFullscreen();
+});
+
+// Delete card
+document.getElementById('deleteCardBtn').addEventListener('click', async () => {
+    await MessCardDB.remove();
+    if (messCardObjectURL) {
+        URL.revokeObjectURL(messCardObjectURL);
+        messCardObjectURL = null;
+    }
+    showMessCardEmpty();
+});
+
+/* ---- Init ---- */
+initMessCard();
 fetchSheetData();

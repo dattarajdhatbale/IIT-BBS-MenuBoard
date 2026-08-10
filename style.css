@@ -361,9 +361,190 @@ select option{
     font-size:20px;
 }
 
-.insta-icon{
-    width:22px;
-    height:22px;
-    object-fit:contain;
+/* ── Mess Card Section ───────────────────────── */
+.mess-card-section {
+  margin-top: 20px;
 }
+
+.mess-card-header {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.mess-card-hint {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.upload-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background: var(--accent);
+  color: var(--text);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.upload-label:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.upload-label input[type="file"] {
+  display: none;
+}
+
+.mess-card-privacy {
+  margin-top: 10px;
+  font-size: 11px;
+  opacity: 0.45;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* Stored state */
+#messCardThumb {
+  display: block;
+  width: 100%;
+  max-height: 170px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.04);
+  margin-bottom: 12px;
+}
+
+.mess-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mess-card-secondary {
+  display: flex;
+  gap: 8px;
+}
+
+.replace-label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background: var(--card);
+  color: var(--text);
+  transition: 0.2s;
+  text-align: center;
+}
+
+.replace-label:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.replace-label input[type="file"] {
+  display: none;
+}
+
+.delete-card-btn {
+  flex: 1;
+  padding: 9px 14px;
+  border: 1px solid rgba(200,50,50,0.28);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background: rgba(200,50,50,0.06);
+  color: #c43030;
+  transition: 0.2s;
+  font-family: inherit;
+}
+
+.delete-card-btn:hover {
+  background: rgba(200,50,50,0.12);
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] #messCardThumb {
+  background: rgba(255,255,255,0.04);
+}
+
+[data-theme="dark"] .delete-card-btn {
+  color: #f87171;
+  border-color: rgba(239,68,68,0.25);
+  background: rgba(239,68,68,0.07);
+}
+
+/* ── Fullscreen Overlay ──────────────────────── */
+#messCardOverlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#messCardOverlay.hidden {
+  display: none;
+}
+
+#messCardFull {
+  max-width: 100vw;
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  display: block;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none; /* taps fall through to overlay, closing it */
+}
+
+#overlayCloseBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.22);
+  color: #fff;
+  font-size: 17px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 10000;
+  font-family: inherit;
+}
+
+#overlayCloseBtn:hover {
+  background: rgba(255,255,255,0.25);
+}
+
 
