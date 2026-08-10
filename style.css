@@ -356,6 +356,13 @@ select option{
     box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
+.insta-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    display: block;
+}
+
 .insta-text{
     font-family: 'Righteous', cursive;
     font-size:20px;
