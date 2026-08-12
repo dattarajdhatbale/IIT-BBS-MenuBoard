@@ -329,7 +329,7 @@ select option{
 /* Instagram Footer */
 .footer{
     position: fixed;
-    bottom: 20px;
+    bottom: 8px;
     left: 0;
     width: 100%;
     display: flex;
@@ -337,37 +337,38 @@ select option{
     z-index: 10;
 }
 
-.insta-btn{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    text-decoration:none;
-    color:var(--text);
-    border:1px solid var(--border);
-    padding:8px 18px;
-    border-radius:999px;
-    background:var(--card);
-    box-shadow:0 6px 18px rgba(0,0,0,0.12);
-    transition:all 0.3s ease;
+.social-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
 }
 
-.insta-btn:hover{
-    transform:scale(1.08) translateY(-2px);
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+.social-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--card);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-.insta-icon {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    display: block;
+.social-btn:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border-color: var(--accent);
 }
 
-.insta-text{
-    font-family: 'Righteous', cursive;
-    font-size:20px;
+.social-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--text);
+    transition: fill 0.3s ease;
 }
-
 /* ── Mess Card Section ───────────────────────── */
 .mess-card-section {
   margin-top: 20px;
@@ -431,8 +432,12 @@ select option{
   border: 1px solid var(--border);
   background: rgba(0,0,0,0.04);
   margin-bottom: 12px;
+  cursor: pointer;
+transition: transform 0.15s ease;
 }
-
+#messCardThumb:active {
+    transform: scale(0.98);
+}
 .mess-card-actions {
   display: flex;
   flex-direction: column;

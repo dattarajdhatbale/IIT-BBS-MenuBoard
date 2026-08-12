@@ -109,7 +109,6 @@ window.addEventListener("appinstalled", () => {
     const saved = localStorage.getItem("theme");
     const theme = saved ? saved : "light";
     document.documentElement.setAttribute("data-theme", theme);
-    updateInstaIcon(theme);
 })();
 
 function toggleTheme(){
@@ -117,17 +116,8 @@ function toggleTheme(){
     const newTheme= html.getAttribute("data-theme") === "dark" ? "light" : "dark";
     html.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
-    updateInstaIcon(newTheme);
 }
 
-function updateInstaIcon(theme){
-    const icon = document.getElementById("instaIcon");
-    if (theme === "dark") {
-        icon.src = "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/instagram-white-icon.png";
-    } else {
-        icon.src = "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/black-instagram-icon.png";
-    }
-}
 /* Auto Today */
 (function(){
         const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -312,6 +302,10 @@ function closeMessCardFullscreen() {
 }
 
 /* ---- Attach event listeners (no onclick in HTML) ---- */
+
+document.getElementById('messCardThumb').addEventListener('click', () => {
+    document.getElementById('showCardBtn').click();
+});
 // File upload — new card
 document.getElementById('messCardInput').addEventListener('change', e => {
     if (e.target.files[0]) handleMessCardFile(e.target.files[0]);
